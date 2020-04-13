@@ -1,0 +1,19 @@
+<div class="rounded-box inline">
+    <div class="sketch-info">
+        <ul>
+            <li>
+                <p class="sketch-artist"><%= sketch.artist %></p>
+            </li>
+            <li>
+                <p>Description:</p>
+                <small><%= sketch.description %></small>
+            </li>
+        </ul>
+    </div>
+    <br>
+    <div class="links-bottom">
+        <small><%= link_to "Open", sketch %></small>
+        <small><%= link_to "Edit", edit_sketch_path(sketch) %></small>
+        <small><%= link_to "Delete", sketch, method: :delete %></small>
+    </div>
+</div>

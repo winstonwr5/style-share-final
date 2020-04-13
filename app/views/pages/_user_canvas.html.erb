@@ -1,0 +1,38 @@
+<script>
+    points = [];
+    begin = false;
+    console.log($("#navbar"));
+    function setup(){
+        let canvas = createCanvas(<%= @width %>,<%= @height %>).parent("#p5canvas");
+        $("#canvas-size").text(width + "x" + height);
+
+        background(255,255,255);
+    }
+
+    function draw() {
+
+        if(begin){
+            points.push(createVector(mouseX, mouseY));
+        }
+
+    stroke(0,0,0);
+    noFill();
+    beginShape();
+    for(let i = 0; i < points.length; i++){
+        let x = points[i].x;
+        let y = points[i].y;
+
+        vertex(x, y);
+    }
+        endShape();
+    }
+
+    function mousePressed(){
+        begin = true;
+        points = [];
+    }
+
+    function mouseReleased(){
+        begin = false;
+    }
+</script>

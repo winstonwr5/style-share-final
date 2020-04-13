@@ -1,0 +1,35 @@
+* {
+    font-family: "Garamond", sans-serif;
+}
+
+body {
+    background-image: url("background-banner-color-colours-945302.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+}
+
+.navbar-top {
+    display: flex;
+    box-shadow: 0 .2em 5px #888;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5em;
+    margin-bottom: 1em;
+}
+
+.navbar-brand {
+    display: inline-block;
+    font-size: 1em;
+}
+
+.navbar-links {
+    display: inline-block;
+    color: #FFF5EE;
+}
+
+.navbar-top a {
+    display: block;
+    color: #FFF5EE;
+    text-decoration: none;
+}

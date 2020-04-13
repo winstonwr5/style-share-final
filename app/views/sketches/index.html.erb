@@ -1,0 +1,34 @@
+<div class="container">
+
+<h1>StyleShare User Showcase</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Artist</th>
+      <th>Description</th>
+      <th>Code</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sketches.each do |sketch| %>
+      <tr>
+        <td><%= sketch.artist %></td>
+        <td><%= sketch.description %></td>
+        <td><%= sketch.code %></td>
+        <td><%= link_to 'Show', sketch %></td>
+        <td><%= link_to 'Edit', edit_sketch_path(sketch) %></td>
+        <td><%= link_to 'Destroy', sketch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+    <div class="main-link">
+        <%= link_to 'New Sketch', new_sketch_path %>
+    </div>
+
+</div>

@@ -1,0 +1,60 @@
+// Place all the styles related to the pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+* {
+    font-family: "Garamond", "Arial", "sans-serif";
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    color: #FFF5EE;
+}
+
+h3 {
+    font-size: 5em;
+    padding: 10px 0;
+}
+
+p {
+    font-size: 1em;
+    padding: 5px;
+}
+
+small {
+    font-size: 0.85em;
+    padding: 5px;
+}
+
+select {
+    width: 10em;
+    margin: 10px;
+    border: solid #f1f1f1;
+    border-radius: 5px;
+}
+
+flex {
+    display: flex;
+}
+
+.main-link {
+    display: block;
+    margin-top: 1em;
+}
+
+.links-bottom {
+    position: absolute;
+    bottom: 1em;
+}
+.center-div {
+    color: #F5F5F5;
+    text-align: center;
+    margin: 0px 20px 40px 20px;
+}
+
+#p5canvas {
+    display: inline-block;
+    border: 3px solid black;
+    border-radius: 10px;
+}
