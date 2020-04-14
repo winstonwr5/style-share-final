@@ -1,16 +1,16 @@
 # style-share-final
 StyleShare is an interactive drawing app utilizing the p5.js creative library.
 
-##Tech used
+## Tech used
 
 StyleShare utilizes a full Rails structure (using Webpacker as my module builder) for the form of the app, but the heart of the drawing functionality is the [p5.js](https://p5js.org/) library, which provides functionality for visual arts creative programming using JavaScript. After constructing a Rails backend to complement my frontend, I switched gears and decided to use Google's [Firebase](https://firebase.google.com) as my backend. This allowed me to create new drawings, save, and update them with ease.
 
-##User Stories
+## User Stories
 1. "The User should be able to dynamically draw on a customizable digital sketchpad."
 
 2. "The User should have a way to save their drawings."
 
-##Issues
+## Issues
 
 This project had numerous logistical and technological issues (but it was, nonetheless, very fun and educational.) The versatility of all of the technologies used make me want to improve and refine this project even more, but I encountered significant difficulties at this stage of my learning.
 
@@ -36,7 +36,7 @@ During the third iteration of my project, I used the p5.js CDN to much better, s
 
 I'm very enamored with the p5.js library and I am excited to explore it more after this project.
 
-##Considerations for the Future / Things to Tweak
+## Considerations for the Future / Things to Tweak
 
 In addition to creating better styling and pictorial representation (either through thumbnails or full pictures) of the saved user sketches. I'd like to create a more robust user system for the database with reformulated authorization.
 
@@ -44,7 +44,7 @@ I also would *really* like to add a color palette so users can change the color 
 
 Lastly, I've always intended for this app to viral, so I would like to use ActionCable or maybe even just social media links to allow people to send their saved pictures to their social connections.
 
-##Link to Live Site
+## Link to Live Site
 
 https://style-share.herokuapp.com/
 
