@@ -1,38 +1,139 @@
 <script>
-    points = [];
+    var database;
+
+    sketch = [];
+    currentPath = [];
     begin = false;
-    console.log($("#navbar"));
+
+
     function setup(){
         let canvas = createCanvas(<%= @width %>,<%= @height %>).parent("#p5canvas");
         $("#canvas-size").text(width + "x" + height);
 
-        background(255,255,255);
+        canvas.mousePressed(startPath);
+        canvas.mouseReleased(endPath);
+
+        var saveButton = select('#saveButton');
+        saveButton.mousePressed(saveSketch);
+
+        var clearButton = select('#clearButton');
+        clearButton.mousePressed(clearSketch);
+
+        var firebaseConfig = {
+            apiKey: "AIzaSyAdx29D2inic1dpeMBLybWE-eFj8gFH6QU",
+            authDomain: "style-share-app.firebaseapp.com",
+            databaseURL: "https://style-share-app.firebaseio.com",
+            projectId: "style-share-app",
+            storageBucket: "style-share-app.appspot.com",
+            messagingSenderId: "98876833458",
+            appId: "1:98876833458:web:40d7dccd6f25d88e8193ab",
+            measurementId: "G-KESFNKEWBJ"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        database = firebase.database();
+
+        var params = getURLParams();
+        console.log(params);
+        if(params.id) {
+            console.log(params.id);
+            showSketch(params.id);
+        }
+
+        var ref = database.ref('sketches');
+        ref.on('value', gotData, errData);
+    }
+
+    function startPath() {
+        begin = true;
+        currentPath = [];
+        sketch.push(currentPath);
+    }
+
+    function endPath() {
+        begin = false;
     }
 
     function draw() {
+        background(255,255,255);
 
         if(begin){
-            points.push(createVector(mouseX, mouseY));
+            var point = {
+                x: mouseX,
+                y: mouseY
+            };
+            currentPath.push(point);
         }
 
     stroke(0,0,0);
     noFill();
-    beginShape();
-    for(let i = 0; i < points.length; i++){
-        let x = points[i].x;
-        let y = points[i].y;
-
-        vertex(x, y);
-    }
+    for (var i = 0; i < sketch.length; i++) {
+        var path = sketch[i];
+        beginShape();
+        for(var m = 0; m < path.length; m++){
+            vertex(path[m].x, path[m].y);
+        }
         endShape();
+        }
     }
 
-    function mousePressed(){
-        begin = true;
-        points = [];
-    }
+    function saveSketch() {
+        var ref = database.ref('sketches')
+        var data = {
+            name: "Will",
+            sketch: sketch
+        };
+        var result = ref.push(data, dataSent);
+        console.log(result.key);
 
-    function mouseReleased(){
-        begin = false;
+        function dataSent(err, status) {
+            console.log(status);
+        }
     }
+        function gotData(data) {
+            var showcase = selectAll('listing');
+            for(var i = 0; i < showcase.length; i++) {
+                showcase[i].remove();
+            }
+
+            var sketches = data.val();
+            var keys = Object.keys(sketches);
+            for (var j = 0; j < keys.length; j++) {
+                var key = keys[j];
+                var li = createElement('li', '');
+                li.class('listing');
+                var ahref = createA('#', key);
+                ahref.mousePressed(showSketch);
+                ahref.parent(li);
+
+                var perma = createA('?id=' + key, 'permalink');
+                perma.parent(li);
+                perma.style('padding', '4px');
+
+                li.parent('sketchlist');
+            }
+        }
+
+        function errData(err) {
+            console.log(err);
+        }
+
+        function showSketch(key) {
+            if (key instanceof MouseEvent) {
+                key = this.html();
+            }
+            var ref = database.ref('sketches/' + key);
+            ref.once('value', oneSketch, errData);
+
+            function oneSketch(data) {
+                var dbsketch = data.val();
+                sketch = dbsketch.sketch;
+            }
+        }
+
+        function clearSketch() {
+            sketch = [];
+        }
+
 </script>

@@ -2,7 +2,12 @@
 
     <h2>Enter Your Prompt Pic:</h2>
 
-    <%= render 'form' %>
+    <div class="sketch-form">
+    <%= form_for :resolution, url: pages_show_path do |form| %>
+    <%= form.file_field :image %>
+    <%# <%= render :partial => 'prompts/form' %>
+    <% end %>
+    </div>
 
 
     <h2>Your Canvas</h2>
@@ -15,7 +20,15 @@
     <p id="canvas-size"></p>
     <div id="p5canvas">
     </div>
-
+    <p>
+        <button id="saveButton">save sketch</button>
+        <button id="clearButton">clear</button>
+    </p>
 </div>
 
 <%= render 'user_canvas' %>
+
+    <p>
+        <ol id="sketchlist">
+
+        </ol>
